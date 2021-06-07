@@ -1,0 +1,71 @@
+<%= form_for(@recipe) do |form| %>
+<% if recipe.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+
+  <ul>
+    <% recipe.errors.each do |error| %>
+    <li><%= error.full_message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="mb-3"> 
+  <label for="cover">
+  <%= image_tag @recipe.cover_url, style: "width: 128px; height: 128px", id: "image_#{@recipe.id}_medium" %>
+    <%= form.file_field :image_file, id: "image_#{@recipe.id}", class: 'form-control image-upload'%>
+  </label>
+</div>
+
+<div class="mb-3">
+  <%= form.label :title, class: 'form-label' %>
+  <%= form.text_field :title, class: 'form-control'%>
+</div>
+
+<div class="mb-3">
+  <%= form.label :content, class: 'form-label' %>
+  <%= form.rich_text_area :content, class: 'form-control', style: "height: 800px;" %>
+</div>
+
+
+<%= form.fields_for :recipe_foods, @recipe_foods do |rf| %>
+<div class="mb-3">
+  <%= rf.label 'food', class: 'form-label' %>
+  <%= rf.select :food_id, Food.all.collect { |x| [x.name, x.id] }, {include_hidden: false}, class: 'form-control'%>
+</div>
+
+<div class="mb-3">
+  <%= rf.label :count, class: 'form-label' %>
+  <%= rf.number_field :count, min: 1, class: 'form-control' %>
+</div>
+
+<div class="mb-3">
+  <%= rf.label :unit, class: 'form-label' %>
+  <%= rf.text_field :unit, class: 'form-control' %>
+</div>
+<% end %>
+
+
+<div class="actions">
+  <%= form.submit 'Submit', class: 'btn btn-primary' %>
+</div>
+<% end %>
+
+<script>
+function readURL(input) {
+  if (input.files && input.files[0]) {
+    const reader = new FileReader();            
+    reader.onload = function (e) {
+        $(`#${input.id}_medium`).attr('src', e.target.result);
+    }
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+$(() => {
+  $(".image-upload").change((e) => {
+    readURL(e.target);
+  });
+})
+</script>

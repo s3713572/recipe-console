@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container card">
+  <div class="card-body">
+    <div class="container">
+      <%= image_tag @food.img_url, class: 'card-img-top', style: "width: 128px; height: 128px; margin-left: 45%;" %>
+    </div>
+
+    <p>
+      <strong>Name:</strong>
+      <%= @food.name %>
+    </p>
+
+    <p>
+      <strong>Type:</strong>
+      <%= @food.food_type %>
+    </p>
+
+    <%= link_to 'Edit', edit_food_path(@food), class: 'btn btn-primary' %> |
+    <%= link_to 'Back', foods_path, class: 'btn btn-danger' %>
+  </div>
+</div>

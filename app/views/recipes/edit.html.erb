@@ -1,0 +1,9 @@
+<div class="container">
+  <h1>Editing recipe</h1>
+
+  <%= render 'form', recipe: @recipe, recipe_foods: @recipe_foods %>
+
+  <hr>
+  <%= link_to 'Show', @recipe, class: 'btn btn-success' %> |
+  <%= link_to 'Back', recipes_path, class: 'btn btn-danger' %>
+</div>

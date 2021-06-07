@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container card">
+  <div class="card-body">
+    <p>
+      <strong>Customer:</strong>
+      <%= @purchase_order.customer_name %>
+    </p>
+
+    <p>
+      <strong>Username:</strong>
+      <%= @purchase_order.username %>
+    </p>
+
+     <p>
+      <strong>Address:</strong>
+      <%= @purchase_order.address %>
+    </p>
+
+     <p>
+      <strong>City:</strong>
+      <%= @purchase_order.city %>
+    </p>
+
+    <p>
+      <strong>State:</strong>
+      <%= @purchase_order.state %>
+    </p>
+
+    <p>
+      <strong>Country:</strong>
+      <%= @purchase_order.country %>
+    </p>
+
+    <div>
+      <strong>Purchase order items:</strong>
+      <br>
+      <% @purchase_order.purchase_order_items.each do |item| %>
+        <%= item.count %> <%= item.unit %> of <%= link_to item.food.name, item.food %>
+        <br/>
+      <% end %>
+    </div>
+
+    <br>
+    <p>
+      <strong>Status:</strong>
+      <%= @purchase_order.status %>
+    </p>
+
+
+    <%= link_to 'Back', purchase_orders_path, class: 'btn btn-danger' %>
+    <%= link_to 'Print', print_order_path(@purchase_order.id), class: 'btn btn-warning' %>
+  </div>
+</div>

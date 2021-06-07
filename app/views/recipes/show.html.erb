@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container card">
+  <div class="container">
+    <%= image_tag @recipe.cover_url, class: 'card-img-top', style: "width: 128px; height: 128px; margin-left: 45%;" %>
+  </div>
+  <div class="card-body">
+    <p>
+      <strong>Title:</strong>
+      <%= @recipe.title %>
+    </p>
+
+    <p>
+      <strong>Content:</strong>
+      <%= @recipe.content %>
+    </p>
+
+    <div>
+      <strong>Food includes in this recipe:</strong>
+      <br>
+      <% @recipe.recipe_foods.each do |recipe_food| %>
+        <%= recipe_food.count %> <%= recipe_food.unit %> of <%= link_to recipe_food.food.name, recipe_food.food %>
+        <br/>
+      <% end %>
+    </div>
+
+    <%= link_to 'Edit', edit_recipe_path(@recipe), class: 'btn btn-primary' %> |
+    <%= link_to 'Back', recipes_path, class: 'btn btn-danger' %>
+  </div>
+</div>

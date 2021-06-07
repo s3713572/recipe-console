@@ -1,0 +1,61 @@
+<div class="container">
+
+  <% if @purchase_order.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@purchase_order.errors.count, "error") %> prohibited this purchase order from being saved:</h2>
+
+    <ul>
+      <% @purchase_order.errors.each do |error| %>
+      <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <p>
+    <strong>Customer:</strong>
+    <%= @purchase_order.customer_name %>
+  </p>
+  <p>
+    <strong>Username:</strong>
+    <%= @purchase_order.username %>
+  </p>
+
+  <%= form_for(@purchase_order) do |form| %>
+    <div class="mb-3">
+      <%= form.label :address, class: 'form-label' %>
+      <%= form.text_field :address, class: 'form-control'%>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :address, class: 'form-label' %>
+      <%= form.text_field :address, class: 'form-control'%>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :city, class: 'form-label' %>
+      <%= form.text_field :city, class: 'form-control'%>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :state, class: 'form-label' %>
+      <%= form.text_field :state, class: 'form-control'%>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :country, class: 'form-label' %>
+      <%= form.text_field :country, class: 'form-control'%>
+    </div>
+    
+    <div class="mb-3">
+      <%= form.label :status, class: 'form-label' %>
+      <%= form.select(:status, PurchaseOrder.statuses.keys.map {|status| [status.titleize, status]}, {}, class: 'form-control')%>
+    </div>
+
+    <div class="actions">
+      <%= form.submit 'Submit', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+  <hr>
+  <%= link_to 'Back', purchase_orders_path, class: 'btn btn-danger' %>
+</div>

@@ -1,0 +1,65 @@
+<h1>Respi Order</h1>
+<div style="margin-left: 30%">
+ <br>
+ <p>
+      <strong>Customer:</strong>
+      <%= @purchase_order.customer_name %>
+    </p>
+
+    <p>
+      <strong>Username:</strong>
+      <%= @purchase_order.username %>
+    </p>
+
+     <p>
+      <strong>Address:</strong>
+      <%= @purchase_order.address %>
+    </p>
+
+     <p>
+      <strong>City:</strong>
+      <%= @purchase_order.city %>
+    </p>
+
+    <p>
+      <strong>State:</strong>
+      <%= @purchase_order.state %>
+    </p>
+
+    <p>
+      <strong>Country:</strong>
+      <%= @purchase_order.country %>
+    </p>
+<br>
+    <div>
+      <strong>Order items:</strong>
+      <br>
+      <table>
+        <thead style="text-align: left;">
+          <tr>
+            <th>Food</th>
+            <th>Count</th>
+            <th>Unit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @purchase_order.purchase_order_items.each do |item| %>
+            <tr>
+              <td><%= item.food.name %></td>
+              <td><%= item.count %></td>
+              <td><%= item.unit %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+<br>
+    <p>
+      <strong>Status:</strong>
+      <%= @purchase_order.status %>
+    </p>
+</div>
+
+<script>
+  window.print();
+</script>
